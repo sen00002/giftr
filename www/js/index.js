@@ -305,13 +305,20 @@ function saveGift(){
     console.log("Cost Saved " + costSaved);
     
     let currentTime = new Date().getDate() / 1000;
+    // current time is divided by 1000 to get time in seconds
     
     let giftIdea = {
+        // new object is created
         idea: savedGifts,
+        // value of Idea will be viewed as save gifts
         at: savedStore,
+        // at the location, the value will be saved store
         url: savedUrl,
+        //the url will be the saved ones
         cost: costSaved,
+        // all the displayed value will be the ones which are saved
         id: currentTime
+        // id will display the current time
     }
     console.log("Gift Idea " + giftIdea);
     
