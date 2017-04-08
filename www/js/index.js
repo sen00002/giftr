@@ -223,16 +223,20 @@ function setLocalStorage(){
     // it will display that people are successfully added to the local storage
 }
 function getLocalStorage(){
+      
     // we will take data from local storage with the help of this function
-    console.log("The key is " + localStorageKey);
+
     //again it will display the local storage key
-    let getItem = localStorage.getItem(localStorageKey);
     // we would be able to store in the local storage key
-    console.log("Get " + getItem);
     // it will display as the item is being taken
-    pplList = JSON.parse(getItem);
     //it will become a javascript object
-    console.log("List of People from LocalStorage " + pplList);
+     if (!localStorage.getItem(localStorageKey)) {
+
+        
+    } else {
+        pplList = JSON.parse(localStorage.getItem(localStorageKey));
+        console.log("The People list is " + pplList);
+    }
     // it will display the list of the people in the console window
 }
 function cancelModal(){
@@ -321,23 +325,34 @@ function saveGift(){
         // id will display the current time
     }
     console.log("Gift Idea " + giftIdea);
+    //it will display the gift idea in the console window
     
     ideaList.push(giftIdea);
+    //The push() method adds one or more elements to the end of an array and returns the new length of the array
     console.log("List of Ideas " + ideaList);
     
     saveToContact();
+    // it will save contact details
     document.getElementById("giftField").value = "";
+    //the value of gift will displayed as entered in the gift field
     document.getElementById("storeField").value = "";
+    // the store will be displayed as entered in the store field
     document.getElementById("urlField").value = "";
+    //It will store the value as it is and attach it as entered in the url field
     document.getElementById("costField").value = "";
+    // cost field will be the value entered in the cost field
     
    cancelGiftModal();
-    
+    // it will cancel the gift Modal
     displayGiftList();
+    // it will display the gift list
 }
 function displayGiftList(){
+    //this function will dislplay the gift list
     let listOfGift = document.getElementById("gift-list");
+    // the list of the gifts will be displayed under gift-list
     listOfGift.innerHTML = "";
+    // it will display the list of the gifts in html format
     
     for(var i = 0; i < ideaList.length;i++){
         let li = document.createElement("li");
@@ -350,7 +365,8 @@ function displayGiftList(){
         let div = document.createElement("div");
         div.className = "media-body";
         div.textContent = ideaList[i].idea;
-        
+        span.addEventListener("touchstart", deleteItem);
+
         
         if(ideaList[i].at != ""){
             let location = document.createElement("p");
@@ -376,6 +392,7 @@ function displayGiftList(){
     }
 }
 function cancelGiftModal(){
+    // this fucntion will cancel the gift modal
     var end = new CustomEvent('touchend', {
         bubbles: true,
         cancelable: true
@@ -395,6 +412,11 @@ function saveToContact(){
         }
     }
     setLocalStorage();
+}
+
+function deleteItem(ev){
+    console.log("Delete Item");
+//    localStorage.removeItem(localStorageKey);
 }
 
 
